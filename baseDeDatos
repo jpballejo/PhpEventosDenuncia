@@ -1,0 +1,20 @@
+
+CREATE TABLE `usuarios` (
+  `ci` int(11) NOT NULL,
+  `nombre` varchar(256) NOT NULL,
+  `apellido` varchar(256) NOT NULL,
+  `email` varchar(256) NOT NULL,
+  `contrasenia` varchar(256) NOT NULL,
+  `telefono` varchar(256) NOT NULL,
+  `activo` tinyint(1) NOT NULL,
+  `fnac` date NOT NULL,
+  `admin` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`ci`);
+
+
+
+
