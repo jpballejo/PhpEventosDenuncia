@@ -1,70 +1,46 @@
 <?php
-require "clases/clase_base.php";
-require "clases/usuario.php";
+require_once ("clases/usuario.php");
+require_once ("clases/clase_base.php");
 require_once('clases/template.php');
 require_once('clases/Utils.php');
 require_once('clases/session.php');
 require_once('clases/auth.php');
 
 
-class ControladorUsuario extends ControladorIndex {
-
- function listado($params=array()){
- 	
- 	
- 	$ci = Auth::estaLogueado();
- 	$userLogin = null;
- 	if(isset($ci)){
- 		$usuario=new Usuario(); 
-        $userLogin = $usuario->obtenerPorCI($ci);
-    } else {
-    	$this->redirect("inicio","principal");
-    }	
+class ControladorInicio extends ControladorIndex {
 
 
-	$buscar="";
-	$titulo="Listado";
-	$mensaje="";
-	if(!empty($params)){
-		if($params[0]=="borrar"){
-			$usuario=new Usuario();
-			$idABorrar=$params[1];
-	 		if($usuario->borrar($idABorrar)){
-	 			//Redirigir al listado
-	 			//header('Location: index.php');exit;
-	 			$this->redirect("usuario","listado");
-	 		}else{
-	 			//Mostrar error
-	 			$usr=$usuario->obtenerPorId($idABorrar);
-	 			//$mensaje="Error!! No se pudo borrar el usuario  <b>".$usr->getNombre()." ".$usr->getApellido()."</b>";
-	 			$mensaje="ERROR. No existe el usuario";
-	 			$usuarios=$usuario->getListado();	
-	 		}
+function principal () {
+		
+		$ci = Auth::estaLogueado();
+		if($ci!=null){			
+			$usuario = (new Usuario())->obtenerPorCI($ci);
+			if( $usuario->esAdmin() == 1){
+				//mostrar menu
+				$this->redirect("usuario","listado");
+			}else{
+				$datos = array(
+					"link_cerrarSesion" => "true",
+					'usuario' => $usuario,
+					//listar lista de baches
+				);
+				
+				$tpl = Template::getInstance();
+				$tpl->mostrar('inicio',$datos);
+			}
 		}else{
-	 		$usuario=new Usuario();
-			$usuarios=$usuario->getListado();	
-	 	}
-	}else{
- 		$usuario=new Usuario();
-		$usuarios=$usuario->getListado();	
- 	}
-
- 	
-	
-	//Llamar a la vista
- 	$tpl = Template::getInstance();
- 	$datos = array(
-    'usuarios' => $usuarios,
-    'usuario' => $userLogin,
-    'buscar' => $buscar,
-    'titulo' => $titulo,
-    'mensaje' => $mensaje,
-    );
-
-	$tpl->asignar('usuario_nuevo',$this->getUrl("usuario","nuevo"));
-	$tpl->mostrar('usuarios_listado',$datos);
-
+								
+				$datos = array(
+					"link_inicioSesion" => "true",
+					//listar lista de baches
+				);
+				$tpl = Template::getInstance();
+				$tpl->mostrar('inicio',$datos);
+			}
+		
 }
+
+ 
 function buscar($params=array()){
  	
  	Auth::estaLogueado();
@@ -108,7 +84,6 @@ function nuevo(){
 		$usr->setApellido($_POST["apellido"]);
 		$usr->setCI($_POST["ci"]);
 		$usr->setTelefono($_POST["telefono"]);
-		$usr->setContrasenia($_POST["password"]);
 		$usr->setEmail($_POST["email"]);
 		if($usr->agregar()){
 			$this->redirect("usuario","listado");
@@ -126,23 +101,20 @@ function nuevo(){
 	$tpl->mostrar('usuarios_nuevo',array());
 
 }
-/*
 function login(){
 
 	$mensaje="";
-	session_start();
-	
+				
 	if(isset($_POST["email"])){
 		$usr= new Usuario();
-		
 		$email=$_POST["email"];
 		$pass=sha1($_POST["password"]);
 
 		if($usr->login($email,$pass)){
-			$this->redirect("usuario","listado");
+			$this->redirect("inicio","principal");
 			exit;
 		}else{
-			$mensaje="Error! No se pudo agregar el usuario";
+			$mensaje="Error! Error de usuario o password";
 		}
 
 		
@@ -154,11 +126,11 @@ function login(){
 	$tpl->asignar('mensaje',$mensaje);
 	$tpl->mostrar('usuarios_login',array());
 
-}*/
+}
 function logout(){
 	$usr= new Usuario();
 	$usr->logout();
-	$this->redirect("usuario","login");
+	$this->redirect("inicio","principal");
 }
 
 function favoritos(){

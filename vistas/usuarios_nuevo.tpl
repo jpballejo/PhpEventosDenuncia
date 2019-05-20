@@ -2,75 +2,88 @@
 <html lang="en">
   <head>
     <base href="{$url_base}">
-    <meta charset="utf-8">    
+    <meta charset="utf-8">
+    
     <title>{$proyecto}</title>
+
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/inicio.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
+
   </head>
   <body>
     {include file="cabezal.tpl"}
     <div class="container-fluid">
       <div class="row">
+
+        <div class="col-lg-3">
+
+          <h1 class="my-4">{$titulo} </h1>
+        </div>
        
-        <div class="col-sm-12  col-md-12  main">
-          <h1 class="page-header">Usuarios</h1>
-          <h2 class="sub-header">{$titulo}</h2>
+        <div class="col-md-9 col-md-offset-3 text-center">
+          
           {if $mensaje!=""}
             <div class="alert alert-danger" role="alert">{$mensaje}</div>
           {/if}
           <form class="form-horizontal" method="post">
             <fieldset>
             <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="nombre">Nombre</label>  
-              <div class="col-md-4">
-              <input id="nombre" name="nombre" type="text" placeholder="Juan" class="form-control input-md" required="">
+            <div class="form-group row">
+              <label class="col-md-3 control-label" for="nombre">Nombre</label>  
+              <div class="col-md-6">
+              <input id="nombre" name="nombre" type="text" class="form-control input-md" required="">
                 
               </div>
             </div>
 
             <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="apellido">Apellido</label>  
-              <div class="col-md-4">
-              <input id="apellido" name="apellido" type="text" placeholder="Silvera" class="form-control input-md" required="">
+            <div class="form-group row">
+              <label class="col-md-3 control-label" for="apellido">Apellido</label>  
+              <div class="col-md-6">
+              <input id="apellido" name="apellido" type="text" class="form-control input-md" required="">
                 
               </div>
             </div>
 
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="ci">C.I.</label>  
-              <div class="col-md-4">
-              <input id="ci" name="ci" type="text" placeholder="" class="form-control input-md" required="">
+            <div class="form-group row">
+              <label class="col-md-3 control-label" for="ci">C.I.</label>  
+              <div class="col-md-6">
+              <input id="ci" name="ci" type="text" class="form-control input-md" required="">
                 
               </div>
             </div>
 
             <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="apellido">Email</label>  
-              <div class="col-md-4">
-              <input id="email" name="email" type="text" placeholder="pepe@gmail.com" class="form-control input-md" required="">
+            <div class="form-group row">
+              <label class="col-md-3 control-label" for="email">Email</label>  
+              <div class="col-md-6">
+              <input id="email" name="email" type="text" class="form-control input-md" required="">
                 
               </div>
             </div>
 
              <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="apellido">Password</label>  
-              <div class="col-md-4">
-              <input id="pass" name="pass" type="password"  minlength="6" title="6 letras mín." class="form-control input-md" required="">
+            <div class="form-group row">
+              <label class="col-md-3 control-label" for="password">Password</label>  
+              <div class="col-md-6">
+              <input id="password" name="password" type="password"  minlength="6" title="6 letras mín." class="form-control input-md" required="">
                 
               </div>
             </div>
 
             <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="telefono">Telefono</label>  
-              <div class="col-md-4">
-              <input id="telefono" name="telefono" type="text" placeholder="21" class="form-control input-md">
+            <div class="form-group row">
+              <label class="col-md-3 control-label" for="telefono">Telefono</label>  
+              <div class="col-md-6">
+              <input id="telefono" name="telefono" type="text" class="form-control input-md">
                 
               </div>
             </div>
@@ -81,9 +94,9 @@
             
 
             <!-- Button -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="guardar"></label>
-              <div class="col-md-4">
+            <div class="form-group row">
+              <label class="col-md-3 control-label" for="guardar"></label>
+              <div class="col-md-6">
                 <button id="guardar" name="guardar" class="btn btn-success">Agregar</button>
               </div>
             </div>
@@ -93,15 +106,19 @@
       </div>
     </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../../assets/js/vendor/holder.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+   <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="style/bootstrap/jquery/jquery.min.js"></script>
+  <script src="style/bootstrap/js/bootstrap.bundle.min.js"></script>
+
   </body>
 </html>
 

@@ -7,6 +7,7 @@ class Session
         }
     }
     public static function set($key, $value){
+        echo $key;
         $_SESSION[$key] = $value;
     }
     public static function get($key){

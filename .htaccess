@@ -10,7 +10,7 @@ RewriteBase /PhpEventosDenuncia/
 	Deny From All
 </Files>
 
-RewriteRule ^/prueba/public/$ - [NC,L] 
+#RewriteRule ^/prueba/public/$ - [NC,L] 
 
 # Protect application and system files from being viewed
 RewriteRule ^(?:clases|config|controladores|vendor)\b.* index.php/$0 [L]

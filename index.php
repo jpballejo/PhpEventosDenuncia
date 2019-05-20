@@ -22,8 +22,8 @@ if(isset($_GET['url'])){
 		$params[]=$request[$i];
 	}
 }else{
-	$controller="usuario";
-	$action="listado";
+	$controller="inicio";
+	$action="principal";
 	$params=array();
 }
 

@@ -1,5 +1,6 @@
 <?php
 require_once ("clase_base.php");
+require_once ("session.php");
 
 class Usuario extends ClaseBase {
 	public $nombre = '';
@@ -129,17 +130,23 @@ class Usuario extends ClaseBase {
     }
 
     public function login($email,$pass){
+
+        ini_set("display_errors", 1);
+        error_reporting(E_ALL & ~E_NOTICE);
+
+                
         $stmt = $this->getDB()->prepare( "SELECT * from  usuarios WHERE email=? AND contrasenia=?" );
         $stmt->bind_param("ss",$email,$pass);
         $stmt->execute();
         $resultado = $stmt->get_result();
         if($resultado->num_rows<1){
+            echo "retorno falso";
             return false;
         }    
         $res=$resultado->fetch_object();
         Session::init();
         Session::set('usuario_logueado', true);
-        Session::set('usuario_id', $res->id);
+        Session::set('usuario_ci', $res->ci);
         Session::set('usuario_nombre', $res->nombre);
         Session::set('usuario_email', $res->email);
         return true;
@@ -150,15 +157,19 @@ class Usuario extends ClaseBase {
         Session::destroy();
    } 
 
-   public function obtenerPorCI($id){
-        $sql="select * from $this->tabla where ci=$ci ";
-        $res=NULL;
-        $resultado =$this->db->query($sql)   
-            or die ("Fallo en la consulta");
-         if($fila = $resultado->fetch_object()) {
-           $res= new $this->modelo($fila);
-        }
-        return $res;
+   public function obtenerPorCI($ci){
+
+        $stmt = $this->getDB()->prepare( 
+            "SELECT * FROM usuarios 
+            WHERE ci= ? " );
+        
+        $stmt->bind_param( "s",$ci);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $fila=$resultado->fetch_object();
+        $persona= new Usuario($fila);
+        
+        return $persona;        
     }
 }
 ?>

@@ -1,22 +1,35 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">{$proyecto}</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="{$url_logout}">Cerrar Sesión</a></li>
-          </ul>
-          <form class="navbar-form navbar-right" method="post" action="{$url_base}usuario/buscar/">
-            <input type="text" id="buscar" name="buscar" class="form-control" placeholder="Buscar..." value='{$buscar}'>
-            <input type="submit" value="Buscar" class="form-control btn btn-primary">
-          </form>
-        </div>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{$url_base}inicio/principal/">Denuncia Bache</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+              
+          {if isset($usuario)}
+             <li class="nav-item">
+              <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Hola, {$usuario->getNombre()|upper}
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="{$url_base}inicio/logout/">Logout</a>
+                
+              </div>
+            </div>
+            </li>           
+          {else}
+            <li class="nav-item">
+              <a class="nav-link" href="{$url_base}inicio/login/">Iniciar Sesion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{$url_base}usuario/nuevo/">Registrarse</a>
+            </li>
+          {/if}
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>

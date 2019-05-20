@@ -8,7 +8,7 @@
     <title>{$proyecto}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
@@ -24,14 +24,31 @@
   <body>
     {include file="cabezal.tpl"}
     <div class="container-fluid">
+      
+              
+
       <div class="row">
+        <div class="col-lg-3">
+
+          <h1 class="my-4">Usuarios {$titulo} </h1>
+          <div class="list-group">
+            <a href="#" class="list-group-item">Category 1</a>
+            <a href="#" class="list-group-item">Category 2</a>
+            <a href="#" class="list-group-item">Category 3</a>
+          </div>
+
+        </div>
+      <!-- /.col-lg-3 -->
+
        
-        <div class="col-sm-12  col-md-12  main">
-          <h1 class="page-header">Usuarios</h1>
-          <h2 class="sub-header">{$titulo} <button id="agregar" name="agregar" class="btn btn-success pull-right" onClick="window.location='{$usuario_nuevo}'">Agregar</button></h2>
+        <div class="col-sm-9  col-md-9  main">
+          
           {if $mensaje!=""}
             <div class="alert alert-danger" role="alert">{$mensaje}</div>
           {/if}
+          <button id="agregar" name="agregar" style="float: right;" class="btn btn-success pull-right" onClick="window.location='{$usuario_nuevo}'">Agregar</button>
+                    
+      
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -72,7 +89,18 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+     <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+           <!-- Bootstrap core JavaScript -->
+  <script src="style/bootstrap/jquery/jquery.min.js"></script>
+  <script src="style/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
 
   </body>
 </html>

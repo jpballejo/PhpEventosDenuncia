@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2019-04-29 23:53:18
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2019-05-16 17:17:37
          compiled from "vistas\usuarios_listado.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:67435cc461df1852b5-56795896%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '29dac0d648e7e564a5eb8e1642e452597cd491d5' => 
     array (
       0 => 'vistas\\usuarios_listado.tpl',
-      1 => 1556581102,
+      1 => 1558027043,
       2 => 'file',
     ),
   ),
@@ -22,8 +22,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'url_base' => 0,
     'proyecto' => 0,
     'titulo' => 0,
-    'usuario_nuevo' => 0,
     'mensaje' => 0,
+    'usuario_nuevo' => 0,
     'usuarios' => 0,
     'persona' => 0,
   ),
@@ -41,7 +41,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
@@ -66,17 +66,34 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <?php echo $_smarty_tpl->getSubTemplate ("cabezal.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
     <div class="container-fluid">
+      
+              
+
       <div class="row">
+        <div class="col-lg-3">
+
+          <h1 class="my-4">Usuarios <?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
+ </h1>
+          <div class="list-group">
+            <a href="#" class="list-group-item">Category 1</a>
+            <a href="#" class="list-group-item">Category 2</a>
+            <a href="#" class="list-group-item">Category 3</a>
+          </div>
+
+        </div>
+      <!-- /.col-lg-3 -->
+
        
-        <div class="col-sm-12  col-md-12  main">
-          <h1 class="page-header">Usuarios</h1>
-          <h2 class="sub-header"><?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
- <button id="agregar" name="agregar" class="btn btn-success pull-right" onClick="window.location='<?php echo $_smarty_tpl->tpl_vars['usuario_nuevo']->value;?>
-'">Agregar</button></h2>
+        <div class="col-sm-9  col-md-9  main">
+          
           <?php if ($_smarty_tpl->tpl_vars['mensaje']->value!='') {?>
             <div class="alert alert-danger" role="alert"><?php echo $_smarty_tpl->tpl_vars['mensaje']->value;?>
 </div>
           <?php }?>
+          <button id="agregar" name="agregar" style="float: right;" class="btn btn-success pull-right" onClick="window.location='<?php echo $_smarty_tpl->tpl_vars['usuario_nuevo']->value;?>
+'">Agregar</button>
+                    
+      
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -131,9 +148,22 @@ usuario/editar/<?php echo $_smarty_tpl->tpl_vars['persona']->value->getCI();?>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <?php echo '<script'; ?>
- src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"><?php echo '</script'; ?>
+     <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+           <!-- Bootstrap core JavaScript -->
+  <?php echo '<script'; ?>
+ src="style/bootstrap/jquery/jquery.min.js"><?php echo '</script'; ?>
 >
+  <?php echo '<script'; ?>
+ src="style/bootstrap/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
+>
+    
 
   </body>
 </html>
