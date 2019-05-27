@@ -1,3 +1,15 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+--
+-- Base de datos: `denunciabache`
+--
+CREATE DATABASE IF NOT EXISTS `denunciabache` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `denunciabache`;
+
 
 CREATE TABLE `usuarios` (
   `ci` int(11) NOT NULL,
@@ -16,5 +28,83 @@ ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`ci`);
 
 
+CREATE TABLE `estadoEvento` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(250) DEFAULT NULL,
+  `descripcion` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Indices de la tabla `estadoEvento`
+--
+ALTER TABLE `estadoEvento`
+  ADD PRIMARY KEY (`id`);
+  
+--
+-- AUTO_INCREMENT de la tabla `estadoEvento`
+--
+ALTER TABLE `estadoEvento`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  
+  
+CREATE TABLE `evento` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(250) DEFAULT NULL,
+  `descripcion` varchar(250) DEFAULT NULL,
+  `longitud` varchar(250) DEFAULT NULL,
+  `latitud` varchar(250) DEFAULT NULL,
+  `foto` varchar(250) DEFAULT NULL,
+  `idEstado` int(11) NOT NULL,
+  `activo` 	tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Indices de la tabla `evento`
+--
+ALTER TABLE `evento`
+  ADD PRIMARY KEY (`id`);
+  
+--
+-- AUTO_INCREMENT de la tabla `evento`
+--
+ALTER TABLE `evento`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;  
+  
+  
+  
+  
+  
+CREATE TABLE `registro` (
+  `id` int(11) NOT NULL,
+  `idEvento` int(11) NOT NULL,
+  `idEstado` int(11) NOT NULL,
+  `fecha` date NOT NULL  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indices de la tabla `registro`
+--
+ALTER TABLE `registro`
+  ADD PRIMARY KEY (`id`);
+  
+--
+-- AUTO_INCREMENT de la tabla `registro`
+--
+ALTER TABLE `registro`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;  
+  
+  
+ALTER TABLE `evento`
+  ADD CONSTRAINT `evento_ibfk_1` FOREIGN KEY (`idEstado`) REFERENCES `estadoEvento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
+  
+ALTER TABLE `registro`
+  ADD CONSTRAINT `registro_ibfk_1` FOREIGN KEY (`idEvento`) REFERENCES `evento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,	
+  ADD CONSTRAINT `registro_ibfk_2` FOREIGN KEY (`idEstado`) REFERENCES `estadoEvento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ 
+  
+  
+  
+  
+  
+  

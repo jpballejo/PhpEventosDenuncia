@@ -17,10 +17,9 @@ function principal () {
 			$usuario = (new Usuario())->obtenerPorCI($ci);
 			if( $usuario->esAdmin() == 1){
 				//mostrar menu
-				$this->redirect("usuario","listado");
+				 $this->redirect("usuario", "listado");
 			}else{
 				$datos = array(
-					"link_cerrarSesion" => "true",
 					'usuario' => $usuario,
 					//listar lista de baches
 				);
@@ -31,8 +30,7 @@ function principal () {
 		}else{
 								
 				$datos = array(
-					"link_inicioSesion" => "true",
-					//listar lista de baches
+					
 				);
 				$tpl = Template::getInstance();
 				$tpl->mostrar('inicio',$datos);
