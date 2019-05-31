@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2019-05-27 18:55:08
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2019-05-27 21:20:53
          compiled from "vistas\evento_nuevo.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:13092418765ce7febfd826f1-22511972%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f7886b7268ef10cbd063e2a6ba7f6acd0a3cf184' => 
     array (
       0 => 'vistas\\evento_nuevo.tpl',
-      1 => 1558978560,
+      1 => 1559002780,
       2 => 'file',
     ),
   ),
@@ -112,7 +112,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="inputGroupSelect01">Estados</label>
                 </div>
-                <select class="custom-select" id="estado" name="estado">
+                <select class="custom-select" id="Idestado" name="Idestado">
                   <option selected>Seleccionar...</option>   
                   <?php  $_smarty_tpl->tpl_vars['estado'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['estado']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['estados']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}

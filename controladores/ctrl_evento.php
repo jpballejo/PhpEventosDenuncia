@@ -129,17 +129,18 @@ function nuevo(){
 			$evento->setDescripcion($_POST["descripcion"]);
 			$evento->setLongitud($_POST["longitud"]);
 			$evento->setLatitud($_POST["latitud"]);
-			$evento->setEstado(18);
+			$estado = $_POST['Idestado'];
+			var_dump($estado); 
+			
 			date_default_timezone_set('America/Montevideo');
             $fecha = date("Y-m-d H:i:s");
-            $nombre = $_FILES['img_evento']['name'];
-            if(!isset($name)){
-            	echo "no exite nombre";
-            }
+            //print_r($_POST);
+            $estado = substr($estado,1,3);
+            $est = (int)$estado;
+            $evento->setEstado($est);
             $path = "uploads/" ."_" . str_replace(":", "-", $fecha) . "_" . basename($_FILES["img_evento"]["name"]);
-            if ($_FILES['img_evento']['error'] == UPLOAD_ERR_OK) {
-            	$mensaje="Error! error al subir la imagen";
-            } elseif (move_uploaded_file($_FILES["img_evento"]["tmp_name"], $path)) {
+            //echo $path;
+           if (move_uploaded_file($_FILES["img_evento"]["tmp_name"], $path)) {
             		$evento->setFoto($path);
             		if($evento->agregar()){
 						$this->redirect("evento","nuevo");
@@ -149,7 +150,7 @@ function nuevo(){
 					}
 
             }else{
-            	$mensaje="Error! No se pudo agregar el nuevo evento";
+            	$mensaje="Error! al subir el archivo";
             }
             
 

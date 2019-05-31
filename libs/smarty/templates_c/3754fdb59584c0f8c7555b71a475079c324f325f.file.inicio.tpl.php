@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2019-05-20 22:06:15
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2019-05-31 14:58:23
          compiled from "vistas\inicio.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:944215585cd1995423c8c7-33934124%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3754fdb59584c0f8c7555b71a475079c324f325f' => 
     array (
       0 => 'vistas\\inicio.tpl',
-      1 => 1558389667,
+      1 => 1559314606,
       2 => 'file',
     ),
   ),
@@ -21,6 +21,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'url_base' => 0,
     'proyecto' => 0,
+    'eventos' => 0,
+    'evento' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -52,6 +54,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <?php echo '<script'; ?>
  type="text/javascript" src="js/funciones.js"><?php echo '</script'; ?>
 >
+
+    <style>
+     #mapa {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
     
     
   </head>
@@ -65,19 +74,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <div class="row">
        <!-- Include de menu-->
       <div class="col-lg-3">
-
-        
+                  
        
       </div>
       <!-- /.col-lg-3 -->
 
       <div class="col-lg-9">
-          <!--
-
-          <div class="map-responsive">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d107905.65776278354!2d-58.145960650719246!3d-32.310461910195905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95afc94157e47e5f%3A0xa9480e0e5cb3a345!2s60000+Paysand%C3%BA%2C+Departamento+de+Paysand%C3%BA!5e0!3m2!1ses!2suy!4v1558371595411!5m2!1ses!2suy" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-          </div>-->
-
+          
+          
+           <div id="mapa"></div>           
+                   
       </div>
       <!-- /.col-lg-9 -->
 
@@ -94,8 +100,27 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     </div>
     <!-- /.container -->
   </footer>
-
-
+  <?php echo '<script'; ?>
+ src="js/cargaEventos.js"><?php echo '</script'; ?>
+>
+  <?php  $_smarty_tpl->tpl_vars['evento'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['evento']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['eventos']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['evento']->key => $_smarty_tpl->tpl_vars['evento']->value) {
+$_smarty_tpl->tpl_vars['evento']->_loop = true;
+?>
+    <?php echo '<script'; ?>
+>
+            agregarEvento('<?php echo $_smarty_tpl->tpl_vars['evento']->value->getNombre();?>
+', '<?php echo $_smarty_tpl->tpl_vars['evento']->value->getLongitud();?>
+', '<?php echo $_smarty_tpl->tpl_vars['evento']->value->getLatitud();?>
+');
+    <?php echo '</script'; ?>
+>
+   <?php } ?>
+    <?php echo '<script'; ?>
+ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi6oEuDbvdWa_3wOu656ygnioxQdjLXiM&callback=myMap"><?php echo '</script'; ?>
+>
+  
   <!-- Bootstrap core JavaScript -->
   <?php echo '<script'; ?>
  src="style/bootstrap/jquery/jquery.min.js"><?php echo '</script'; ?>
@@ -103,9 +128,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <?php echo '<script'; ?>
  src="style/bootstrap/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
 >
-   
-
-
+  
   </body>
 </html>
 

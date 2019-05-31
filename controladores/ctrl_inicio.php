@@ -5,6 +5,8 @@ require_once('clases/template.php');
 require_once('clases/Utils.php');
 require_once('clases/session.php');
 require_once('clases/auth.php');
+require_once('clases/evento.php');
+require_once('clases/estadoEvento.php');
 
 
 class ControladorInicio extends ControladorIndex {
@@ -13,6 +15,7 @@ class ControladorInicio extends ControladorIndex {
 function principal () {
 		
 		$ci = Auth::estaLogueado();
+		$eventos = (new Evento())->obtenerEventos();
 		if($ci!=null){			
 			$usuario = (new Usuario())->obtenerPorCI($ci);
 			if( $usuario->esAdmin() == 1){
@@ -21,6 +24,7 @@ function principal () {
 			}else{
 				$datos = array(
 					'usuario' => $usuario,
+					'eventos' => $eventos,
 					//listar lista de baches
 				);
 				
@@ -30,7 +34,7 @@ function principal () {
 		}else{
 								
 				$datos = array(
-					
+					'eventos' => $eventos,
 				);
 				$tpl = Template::getInstance();
 				$tpl->mostrar('inicio',$datos);

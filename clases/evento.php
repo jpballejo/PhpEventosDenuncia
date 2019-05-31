@@ -8,9 +8,9 @@ class Evento extends ClaseBase {
     private $descripcion = '';
 	private $longitud = '';
     private $latitud = '';
-	private $foto = "";
-    private $act = 0;
-    private $estado = null;
+	private $foto = "";    
+    private $idEstado = null;
+    private $activo = 0;
     private $registrosEstados = null;
     
     //Contructor que recibe un array
@@ -30,7 +30,7 @@ class Evento extends ClaseBase {
         return $this->id;
     }
     public function getNombre() {
-        return $this->titulo;
+        return $this->nombre;
     }
     public function getDescripcion() {
         return $this->descripcion;
@@ -46,8 +46,13 @@ class Evento extends ClaseBase {
     }
 
     public function getEstado(){
-        return $this->estado;
+        return $this->idEstado;
     }
+
+     public function getActivo(){
+        return $this->activo;
+    }
+
 
     public function getRegistrosEstados() {
         return $this->registrosEstados;
@@ -78,7 +83,11 @@ class Evento extends ClaseBase {
     }
 
     public function setEstado($estado){
-        $this->estado=$estado;
+        $this->idEstado=$estado;
+    }
+
+    public function setActivo($activo){
+        $this->activo=$activo;
     }
 
     public function setRegistroEstados($registroEstado){
@@ -87,70 +96,55 @@ class Evento extends ClaseBase {
     
 
     public function agregar(){
+
+        ini_set("display_errors", 1);
+        error_reporting(E_ALL & ~E_NOTICE);
         
-        $nombre=$this->nombre();
+        $nombre=$this->getnombre();
         $descripcion=$this->getDescripcion();
         $longitud=$this->getLongitud();
-        $latitudid=$this->getLongitud();
+        $latitud=$this->getLongitud();
         $foto=$this->getFoto();
         $estado=$this->getEstado();
         $act = 1;
-        $registroEstado = $this->registroEstado();
+        $registroEstado = $this->getRegistrosEstados();
         
 
         $stmt = $this->getDB()->prepare( 
-            "INSERT INTO eventos 
-        (nombre, descripcion,longitud, latitud, foto,estado,activo) 
-           VALUES (?,?,?,?,?,?,?,?,?)" );
-        $stmt->bind_param("sssssii",$nombre,$descripcion,$longitud,$latitud,$foto,$estado,$activo);
+            "INSERT INTO evento 
+        (nombre,descripcion,longitud,latitud,foto,idEstado,activo) 
+           VALUES (?,?,?,?,?,?,?)" );
+        $stmt->bind_param("sssssii",$nombre,$descripcion,$longitud,$latitud,$foto,$estado,$act);
         return $stmt->execute();
     
     }
 
-    function subirImg($name){
-
-    $target_dir = "uploads/";
-    $mensaje = "";
-    $target_file = $target_dir . basename($_FILES["img"][$name]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    // Check if image file is a actual image or fake image
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
-        //echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        $mensaje = "File is not an image.";
-        $uploadOk = 0;
-    }
-
-    // Check if file already exists
-    if (file_exists($target_file)) {
-       //echo "Sorry, file already exists.";
-        $uploadOk = 0;
-    }
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
-        $uploadOk = 0;
-    }
-    // Allow certain file formats
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
-        $mensaje= "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
-    }
-    // Check if $uploadOk is set to 0 by an error
-
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-           return $uploadOk;
-    } else {
-        return $mensaje;
-    }
+    
 
 
+public function obtenerEventos(){
+
+    ini_set("display_errors", 1);
+    error_reporting(E_ALL & ~E_NOTICE);
+
+    $sql="select * from evento where activo=1";
+    $res=NULL;
+    $resultado =$this->getDB()->query($sql)   
+    or die ("<h3 style='text-align: center; margin-top: 5%'>Fallo en la consulta</h3>");
+
+    $resultados=array();
+
+    while ( $fila = $resultado->fetch_object() )
+    {
+            
+        $res= new $this->modelo($fila);
+        $res->setEstado((new EstadoEvento())->obtenerPorId($res->getEstado()));
+        $resultados[]=$res;
+    } 
+     
+    return $resultados;      
+    
 }
-
 
     
    

@@ -66,12 +66,7 @@
                     <td>{$estado->getNombre()}</td>
                     <td>{$estado->getDescripcion()}</td>
                     
-                    <td>
-                      <input type="button" value="Borrar" class="btn btn-danger" onClick="window.location='{$url_base}evento/listadoEstado/borrar/{$estado->getId()}/'"/>
-
-                      <input type="button" value="Editar" class="btn btn-link" onClick="window.location='{$url_base}evento/editarEstado/{$estado->getId()}/'"/>
-                      
-                    </td>
+                    
                   </tr>
                 {/foreach}
               </tbody>

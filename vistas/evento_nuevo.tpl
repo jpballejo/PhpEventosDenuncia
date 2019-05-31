@@ -69,7 +69,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="inputGroupSelect01">Estados</label>
                 </div>
-                <select class="custom-select" id="estado" name="estado">
+                <select class="custom-select" id="Idestado" name="Idestado">
                   <option selected>Seleccionar...</option>   
                   {foreach from=$estados item=estado}                                 
                   <option value="'{$estado->getId()}'">{$estado->getNombre()}</option>
