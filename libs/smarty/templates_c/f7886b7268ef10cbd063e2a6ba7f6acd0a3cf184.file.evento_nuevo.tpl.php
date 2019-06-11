@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2019-05-27 21:20:53
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2019-06-03 19:05:26
          compiled from "vistas\evento_nuevo.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:13092418765ce7febfd826f1-22511972%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f7886b7268ef10cbd063e2a6ba7f6acd0a3cf184' => 
     array (
       0 => 'vistas\\evento_nuevo.tpl',
-      1 => 1559002780,
+      1 => 1559588688,
       2 => 'file',
     ),
   ),
@@ -93,6 +93,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               </div>
               <textarea placeholder="Descripción" id="descripcion" name ="descripcion" class="form-control" title="Descripción del evento"></textarea>
             </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text fas fa-map-marker-alt" id="basic-addon1"></span>
+              </div>
+              <input name="latitud" id="latitud" type="text" class="form-control" placeholder="Latitud" aria-label="Latitud" aria-describedby="basic-addon1" required="Ingrese la Latitud del evento" autofocus title="Latitud de Evento">
+            </div> 
                 
             <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -101,12 +108,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               <input name="longitud" id="longitud" type="text" class="form-control" placeholder="Longitud" aria-label="Longitud" aria-describedby="basic-addon1" required="Ingrese la Longitud del evento" autofocus title="Longitud de Evento">
             </div> 
 
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text fas fa-map-marker-alt" id="basic-addon1"></span>
-              </div>
-              <input name="latitud" id="latitud" type="text" class="form-control" placeholder="Latitud" aria-label="Latitud" aria-describedby="basic-addon1" required="Ingrese la Latitud del evento" autofocus title="Latitud de Evento">
-            </div> 
+            
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">

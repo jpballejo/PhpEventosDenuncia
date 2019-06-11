@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2019-05-16 17:17:37
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2019-06-03 18:07:11
          compiled from "vistas\usuarios_listado.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:67435cc461df1852b5-56795896%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '29dac0d648e7e564a5eb8e1642e452597cd491d5' => 
     array (
       0 => 'vistas\\usuarios_listado.tpl',
-      1 => 1558027043,
+      1 => 1559585202,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'url_base' => 0,
     'proyecto' => 0,
-    'titulo' => 0,
+    'esAdmin' => 0,
     'mensaje' => 0,
     'usuario_nuevo' => 0,
     'usuarios' => 0,
@@ -72,13 +72,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       <div class="row">
         <div class="col-lg-3">
 
-          <h1 class="my-4">Usuarios <?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
- </h1>
-          <div class="list-group">
-            <a href="#" class="list-group-item">Category 1</a>
-            <a href="#" class="list-group-item">Category 2</a>
-            <a href="#" class="list-group-item">Category 3</a>
-          </div>
+         <?php if (isset($_smarty_tpl->tpl_vars['esAdmin']->value)) {?>
+                 <?php echo $_smarty_tpl->getSubTemplate ("menu.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+            <?php }?>
 
         </div>
       <!-- /.col-lg-3 -->

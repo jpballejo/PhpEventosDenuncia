@@ -36,14 +36,18 @@ class ClaseBase{
     }
 
     public function obtenerPorId($id){
+        ini_set("display_errors", 1);
+        error_reporting(E_ALL & ~E_NOTICE);
+
         $sql="select * from $this->tabla where id=$id ";
         $res=NULL;
         $resultado =$this->db->query($sql)   
-            or die ("Fallo en la consulta");
+            or die ("<h3 style='text-align: center; margin-top: 5%'>Fallo en la consulta</h3>");
          if($fila = $resultado->fetch_object()) {
-           $res= new $this->modelo($fila);
+           $res= new $this->modelo($fila);           
         }
         return $res;
+
     }
     public function borrar($id){
     	$sql="DELETE FROM $this->tabla WHERE id=$id ";

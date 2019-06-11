@@ -143,7 +143,7 @@ function nuevo(){
            if (move_uploaded_file($_FILES["img_evento"]["tmp_name"], $path)) {
             		$evento->setFoto($path);
             		if($evento->agregar()){
-						$this->redirect("evento","nuevo");
+						$this->redirect("inicio","principal");
 						exit;
 					}else{
 						$mensaje="Error! No se pudo agregar el nuevo evento";
@@ -161,7 +161,7 @@ function nuevo(){
 		$tpl = Template::getInstance();
 		$est= new estadoEvento();
 		$estados = $est->getListado();
-		$tpl->asignar('titulo',"Nuevo Estado");
+		$tpl->asignar('titulo',"Nuevo Evento");
 		$tpl->asignar('buscar',"");
 		$tpl->asignar('estados', $estados);
 		$tpl->asignar('mensaje',$mensaje);
@@ -176,6 +176,26 @@ function nuevo(){
 
 	
 }
+
+
+ function obtenerEvento($params = array()) {
+    header('Content-type: application/json');
+    
+
+    if (!isset($params[0]) || $params[0] == "") {
+        $response_array['status'] = 'error';
+        $response_array['error'] = 'No hay id de evento';
+        echo json_encode($response_array);
+        return;
+    }
+
+    $evento = (new Evento ())->obtenerEventoPorId($params[0]);
+    
+    $response_array['status'] = 'success';
+    $response_array['evento'] = $evento;    
+
+    echo json_encode($response_array);
+ }
 
 
 

@@ -30,12 +30,9 @@
       <div class="row">
         <div class="col-lg-3">
 
-          <h1 class="my-4">Evento {$titulo} </h1>
-          <div class="list-group">
-            <a href="#" class="list-group-item">Category 1</a>
-            <a href="#" class="list-group-item">Category 2</a>
-            <a href="#" class="list-group-item">Category 3</a>
-          </div>
+          {if isset($esAdmin)}
+                 {include file="menu.tpl"}
+            {/if}
 
         </div>
       <!-- /.col-lg-3 -->

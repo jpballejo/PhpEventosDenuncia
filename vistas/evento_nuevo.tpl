@@ -50,6 +50,13 @@
               </div>
               <textarea placeholder="Descripción" id="descripcion" name ="descripcion" class="form-control" title="Descripción del evento"></textarea>
             </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text fas fa-map-marker-alt" id="basic-addon1"></span>
+              </div>
+              <input name="latitud" id="latitud" type="text" class="form-control" placeholder="Latitud" aria-label="Latitud" aria-describedby="basic-addon1" required="Ingrese la Latitud del evento" autofocus title="Latitud de Evento">
+            </div> 
                 
             <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -58,12 +65,7 @@
               <input name="longitud" id="longitud" type="text" class="form-control" placeholder="Longitud" aria-label="Longitud" aria-describedby="basic-addon1" required="Ingrese la Longitud del evento" autofocus title="Longitud de Evento">
             </div> 
 
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text fas fa-map-marker-alt" id="basic-addon1"></span>
-              </div>
-              <input name="latitud" id="latitud" type="text" class="form-control" placeholder="Latitud" aria-label="Latitud" aria-describedby="basic-addon1" required="Ingrese la Latitud del evento" autofocus title="Latitud de Evento">
-            </div> 
+            
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">

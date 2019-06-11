@@ -15,30 +15,32 @@ class ControladorInicio extends ControladorIndex {
 function principal () {
 		
 		$ci = Auth::estaLogueado();
+		$esAdmin = null;
 		$eventos = (new Evento())->obtenerEventos();
 		if($ci!=null){			
 			$usuario = (new Usuario())->obtenerPorCI($ci);
-			if( $usuario->esAdmin() == 1){
-				//mostrar menu
-				 $this->redirect("usuario", "listado");
-			}else{
-				$datos = array(
-					'usuario' => $usuario,
-					'eventos' => $eventos,
-					//listar lista de baches
-				);
-				
-				$tpl = Template::getInstance();
-				$tpl->mostrar('inicio',$datos);
+			if ( $usuario -> esAdmin () ==  1 ) {
+				$esAdmin = true;	
+
 			}
-		}else{
-								
-				$datos = array(
-					'eventos' => $eventos,
-				);
-				$tpl = Template::getInstance();
-				$tpl->mostrar('inicio',$datos);
-			}
+			$datos = array(
+				'usuario' => $usuario,
+				'eventos' => $eventos,
+				'esAdmin' => $esAdmin,
+
+				//listar lista de baches
+			);					
+		} else {
+
+			$datos = array(
+				'eventos' => $eventos,
+				//listar lista de baches
+			);
+		}
+
+		$tpl = Template::getInstance();
+		$tpl->mostrar('inicio',$datos);
+		
 		
 }
 
