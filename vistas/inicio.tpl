@@ -59,7 +59,7 @@
             agregarEvento('{$evento->getId()}', '{$evento->getLatitud()}', '{$evento->getLongitud()}','{$evento->getEstado()->getNombre()}');
     </script>
    {/foreach}
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi6oEuDbvdWa_3wOu656ygnioxQdjLXiM&callback=myMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=KeyGoogle=myMap"></script>
   
   <!-- Bootstrap core JavaScript
   <script src="style/bootstrap/jquery/jquery.min.js"></script>
